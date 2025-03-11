@@ -49,7 +49,8 @@ list_tasks() {
     echo "================= Current Tasks =================="
 #    echo "--------------------------------------------------"
     # Separate pending ([ ]) and completed ([X]) tasks, then combine and number them
-    (grep -v "\[X\]" "$TODO_FILE"; grep "\[X\]" "$TODO_FILE") | nl -w2 -s". " | while IFS= read -r line; do
+    #(grep -v "\[X\]" "$TODO_FILE"; grep "\[X\]" "$TODO_FILE") |
+    nl -w2 -s". " "$TODO_FILE" | while IFS= read -r line; do
         num=$(echo "$line" | awk '{print $1}')
         task=$(echo "$line" | cut -d' ' -f3-)
         timestamp=$(echo "$task" | cut -d'|' -f1 | xargs)
